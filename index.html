@@ -1,14 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Upload to Google Drive</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Guest Book</title>
+    <style>
+        body {
+            font-family: 'Arial, sans-serif';
+            background-color: #f5f5dc;
+            color: #6b4423;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #d2b48c;
+            border-radius: 10px;
+            background-color: #fff8dc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-family: 'Cursive', sans-serif;
+            color: #8b4513;
+        }
+        .upload-container {
+            margin: 20px 0;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        .graphic {
+            margin: 20px 0;
+        }
+        button {
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a0522d;
+        }
+    </style>
 </head>
 <body>
-    <h1>Upload to Google Drive</h1>
-    <input type="file" id="fileInput" multiple />
-    <button onclick="uploadFiles()">Upload</button>
+    <div class="container">
+        <h1>Wedding Guest Book</h1>
+        <div class="graphic">
+            <img src="wedding-graphic.png" alt="Wedding Graphic" width="300">
+        </div>
+        <div class="upload-container">
+            <input type="file" id="fileInput" accept="image/*">
+            <button onclick="uploadFile()">Upload Photo</button>
+        </div>
+    </div>
 
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="upload.js"></script>
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length === 0) {
+                alert('Please select a file to upload.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=media', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+                    'Content-Type': file.type
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Photo uploaded successfully!');
+            })
+            .catch(error => {
+                console.error('Error uploading file:', error);
+                alert('Failed to upload photo.');
+            });
+        }
+    </script>
 </body>
 </html>
