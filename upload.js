@@ -1,4 +1,4 @@
-let CLIENT_ID = weselewstodole2024@gmail.com
+let CLIENT_ID = 013F5B-051DF6-8AC879
 
 let API_KEY = round-bruin-424408-f3
 let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
