@@ -1,6 +1,6 @@
-let CLIENT_ID = 013F5B-051DF6-8AC879
+let CLIENT_ID = 964538086586-1s6s1l2uesvvq5hp8k4pub0oksel765t.apps.googleusercontent.com
 
-let API_KEY = round-bruin-424408-f3
+let API_KEY = client_secret_964538086586-1s6s1l2uesvvq5hp8k4pub0oksel765t.apps.googleusercontent.com
 let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
 let SCOPES = 'https://www.googleapis.com/auth/drive.file';
 
